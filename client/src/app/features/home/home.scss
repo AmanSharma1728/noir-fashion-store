@@ -1,0 +1,136 @@
+// --- 1. BANNER ---
+.banner {
+  text-align: center;
+  padding: 60px 20px 40px; // Top, Sides, Bottom
+
+  h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: #000;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 2px; // Wide letter spacing looks expensive
+    color: #666;
+    text-transform: uppercase;
+  }
+}
+
+// --- 2. CATEGORY BUTTONS ---
+.category-bar {
+  display: flex;
+  justify-content: center; // Centers the buttons
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 60px;
+  padding: 0 20px;
+
+  .cat-btn {
+    background: transparent;
+    border: 1px solid #e0e0e0;
+    padding: 8px 24px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    border-radius: 4px; // Slight rounding, or 0px for sharp edges
+    transition: all 0.2s ease;
+    color: #555;
+
+    &:hover {
+      background: #000;
+      color: #fff;
+      border-color: #000;
+    }
+  }
+}
+
+// --- 3. PRODUCT GRID ---
+.product-grid {
+  display: grid;
+  // Responsive: Auto-fit columns (min 260px wide)
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 50px 30px; // 50px vertical gap, 30px horizontal
+  padding: 0 40px 100px;
+  max-width: 1400px;
+  margin: 0 auto;
+
+  .product-card {
+    cursor: pointer;
+
+    // A. Image Wrapper
+    .image-container {
+      width: 100%;
+      height: 380px; // Fixed height forces uniformity
+      overflow: hidden; // Hides the image when it zooms out
+      background: #f4f4f4;
+      margin-bottom: 20px;
+      position: relative;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; // Ensures image covers the box without stretching
+        transition: transform 0.6s ease, filter 0.4s ease;
+        filter: grayscale(100%); // Starts Black & White
+      }
+    }
+
+    // B. Text Info
+    .info {
+      text-align: center;
+
+      h3 {
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin: 0 0 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #111;
+        // Truncate long titles
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: #555;
+        margin: 0;
+      }
+    }
+
+    // C. Hover Effects
+    &:hover {
+      .image-container img {
+        transform: scale(1.05); // Zoom In
+        filter: grayscale(0%); // Turn to Color
+      }
+
+      .info h3 {
+        text-decoration: underline;
+        text-underline-offset: 4px;
+      }
+    }
+  }
+}
+
+// Mobile Tweaks
+@media (max-width: 768px) {
+  .banner h1 {
+    font-size: 2.5rem;
+  }
+  .product-grid {
+    padding: 0 20px 60px;
+    gap: 30px;
+  }
+  .product-card .image-container {
+    height: 300px;
+  } // Smaller images on phone
+}

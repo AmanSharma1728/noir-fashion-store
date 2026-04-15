@@ -1,0 +1,33 @@
+<header class="header">
+  <div class="container header-content">
+    <a routerLink="/" class="logo">NOIR.</a>
+
+    <div class="search-bar">
+      <div class="search-wrapper">
+        <input
+          type="text"
+          placeholder="Search Collection"
+          (input)="onSearch($event)"
+          spellcheck="false"
+        />
+      </div>
+    </div>
+
+    <nav class="actions">
+      @if (authService.currentUser()?.role === 'seller') {
+      <a routerLink="/seller" class="nav-link dashboard-btn">DASHBOARD</a>
+      }
+
+      <a routerLink="/cart" class="nav-link">BAG ({{ cartService.cartCount() }})</a>
+
+      @if(authService.currentUser(); as user){
+      <span class="nav-link">HELLO, {{ user.name | uppercase }}</span>
+      <button (click)="authService.logout()" class="nav-link logout-btn">LOGOUT</button>
+
+      }@else {
+
+      <a routerLink="/login" class="nav-link">LOGIN</a>
+      }
+    </nav>
+  </div>
+</header>

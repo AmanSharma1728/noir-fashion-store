@@ -1,0 +1,40 @@
+<div class="checkout-container">
+  <h1>CHECKOUT</h1>
+
+  <div class="summary">
+    <h3>TOTAL TO PAY: ${{ cartService.totalPrice() }}</h3>
+  </div>
+
+  <form (ngSubmit)="onPay()">
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input id="name" type="text" [(ngModel)]="name" name="name" required placeholder="John Doe" />
+    </div>
+
+    <div class="form-group">
+      <label for="address">Shipping Address</label>
+      <input
+        id="address"
+        type="text"
+        [(ngModel)]="address"
+        name="address"
+        required
+        placeholder="123 Fashion St"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="cardNumber">Card Number (Fake)</label>
+      <input
+        id="cardNumber"
+        type="text"
+        [(ngModel)]="cardNumber"
+        name="card"
+        required
+        placeholder="0000 0000 0000 0000"
+      />
+    </div>
+
+    <button type="submit" class="pay-btn">PAY NOW</button>
+  </form>
+</div>

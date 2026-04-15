@@ -1,0 +1,170 @@
+.noir-footer {
+  background-color: #000; // Pure Black
+  color: #fff;
+  padding: 80px 60px 40px;
+  font-family: 'Helvetica Neue', 'Arial', sans-serif;
+  letter-spacing: 0.5px;
+
+  // 1. TOP SECTION
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-bottom: 80px; // Space before the bottom line
+  }
+
+  // --- BRAND COLUMN (Left) ---
+  .brand-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; // Pushes Newsletter to bottom of column
+    min-height: 200px;
+    max-width: 400px;
+
+    .logo {
+      font-size: 2rem; // "NOIR." size
+      font-weight: 800;
+      margin: 0 0 15px;
+      color: #fff;
+    }
+
+    .tagline {
+      font-size: 0.8rem;
+      color: #666; // Darker grey text
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 60px; // Gap between tagline and newsletter form
+    }
+
+    .newsletter-section {
+      label {
+        display: block;
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #333; // The thin line from your image
+        padding-bottom: 10px;
+        width: 100%;
+        max-width: 350px;
+
+        input {
+          background: transparent;
+          border: none;
+          outline: none;
+          color: #fff;
+          font-size: 0.85rem;
+          flex: 1;
+          text-transform: uppercase;
+
+          &::placeholder {
+            color: #444; // Very dark grey placeholder
+          }
+        }
+
+        button {
+          background: transparent;
+          border: none;
+          color: #666;
+          font-size: 1.2rem;
+          cursor: pointer;
+          padding: 0;
+          transition: color 0.3s;
+
+          &:hover {
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+
+  // --- NAV COLUMNS (Right) ---
+  .nav-columns {
+    display: flex;
+    gap: 100px; // Wide spacing between columns
+
+    .nav-col {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      h3 {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      a {
+        color: #666; // Grey links
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color 0.3s ease;
+        line-height: 1.5;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // 2. BOTTOM BAR
+  .footer-bottom {
+    border-top: 1px solid #1a1a1a; // Very subtle divider line
+    padding-top: 30px;
+    display: flex;
+    justify-content: space-between; // Copyright Left, Socials Right
+    align-items: center;
+    font-size: 0.7rem;
+    color: #444; // Dark copyright text
+    text-transform: uppercase;
+
+    .socials {
+      display: flex;
+      gap: 30px; // Space between social links
+
+      a {
+        color: #666;
+        text-decoration: none;
+        font-weight: 700;
+        letter-spacing: 1px;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // Mobile Tweaks
+  @media (max-width: 900px) {
+    padding: 60px 30px;
+    .footer-content {
+      flex-direction: column;
+      gap: 60px;
+    }
+    .nav-columns {
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: space-between;
+    }
+    .footer-bottom {
+      flex-direction: column-reverse;
+      gap: 20px;
+      text-align: center;
+    }
+  }
+}

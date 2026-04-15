@@ -1,0 +1,44 @@
+<div class="seller-container">
+  <div class="header">
+    <h1>SELLER DASHBOARD</h1>
+    <p>ADD NEW PIECES TO THE COLLECTION</p>
+  </div>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="product-form">
+    <div class="form-group">
+      <label for="">PRODUCT TITLE</label>
+      <input type="text" formControlName="title" placeholder="e.g. VELVET BOMBER" />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="">PRICE ($)</label>
+        <input type="number" formControlName="price" placeholder="120.00" />
+      </div>
+
+      <div class="form-group">
+        <label for="">CATEGORY</label>
+        <select formControlName="category">
+          <option value="jackets">JACKETS</option>
+          <option value="tops">TOPS</option>
+          <option value="bottoms">BOTTOMS</option>
+          <option value="accessories">ACCESSORIES</option>
+          <option value="shoes">SHOES</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="">IMAGE URL</label>
+      <input type="text" formControlName="image" placeholder="https://..." />
+      <small>Paste a direct link to an image (Unsplash, etc.)</small>
+    </div>
+
+    <div class="form-group">
+      <label for="">DESCRIPTION</label>
+      <textarea formControlName="description" rows="4" placeholder="Product details..."></textarea>
+    </div>
+
+    <button type="submit" [disabled]="productForm.invalid">PUBLISH ITEM</button>
+  </form>
+</div>

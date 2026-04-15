@@ -1,0 +1,58 @@
+<div class="container page-wrapper">
+  <h1>YOUR BAG</h1>
+
+  @if(cartService.cartCount() === 0){
+  <div class="empty-state">
+    <p>Your bag is empty.</p>
+    <a routerLink="/" class="shop-btn">CONTINUE SHOPPING</a>
+  </div>
+  } @else {
+  <div class="cart-layout">
+    <div class="cart-items">
+      @for (item of cartService.cartItems(); track item.product.id) {
+      <div class="cart-item">
+        <img [src]="item.product.image" [alt]="item.product.title" />
+
+        <div class="item-details">
+          <h3>{{ item.product.title }}</h3>
+          <p class="category">{{ item.product.category }}</p>
+          <p class="price">{{ item.product.price | currency }}</p>
+
+          <div class="qty-controls">
+            <button (click)="cartService.updateQuantity(item.product.id, -1)">-</button>
+
+            <span class="qty-number">{{ item.quantity }}</span>
+
+            <button (click)="cartService.updateQuantity(item.product.id, 1)">+</button>
+          </div>
+
+          <button class="remove-btn" (click)="cartService.removeFromCart(item.product.id)">
+            REMOVE
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+
+    <div class="cart-summary">
+      <h2>SUMMARY</h2>
+      <div class="row">
+        <span>Subtotal</span>
+        <span>{{ cartService.totalPrice() | currency }}</span>
+      </div>
+
+      <div class="row">
+        <span>Shipping</span>
+        <span>FREE</span>
+      </div>
+
+      <div class="row total">
+        <span>Total</span>
+        <span>{{ cartService.totalPrice() | currency }}</span>
+      </div>
+
+      <button routerLink="/checkout" class="checkout-btn">CHECKOUT</button>
+    </div>
+  </div>
+  }
+</div>

@@ -1,0 +1,105 @@
+@import '../../../styles/variables';
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid $border-color;
+  padding: 20px 0;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: $font-heading;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-decoration: none;
+  color: $black;
+}
+
+.actions {
+  display: flex;
+  gap: 30px;
+
+  .nav-link {
+    font-family: $font-body;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    color: $black;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  &.dashboard-btn {
+    border: 1px solid #000;
+    padding: 8px 16px; // Make it look like a button
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #000; // Invert colors on hover
+      color: #fff;
+    }
+  }
+}
+
+.search-bar {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .search-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  input {
+    width: 180px;
+    padding: 10px 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    color: #000;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
+    border-radius: 0;
+    outline: none;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+    &::placeholder {
+      color: #999;
+      transition: color 0.3s ease;
+    }
+
+    &:hover {
+      border-bottom-color: #999;
+    }
+
+    &:focus {
+      width: 320px;
+      border-bottom-color: #000;
+
+      &::placeholder {
+        color: #ccc;
+      }
+    }
+  }
+}

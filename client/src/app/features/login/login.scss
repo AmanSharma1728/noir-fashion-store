@@ -1,0 +1,127 @@
+@import '../../../styles/variables';
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; // Center vertically on screen
+  background-color: #fafafa;
+}
+
+.login-box {
+  background: #fff;
+  padding: 50px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  text-align: center;
+
+  h1 {
+    font-family: $font-heading;
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+
+  .subtitle {
+    color: #888;
+    font-size: 12px;
+    margin-bottom: 40px;
+  }
+
+  .form-group {
+    text-align: left;
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      color: #444;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #eee;
+      background: #fcfcfc;
+      font-size: 14px;
+      outline: none;
+      transition: border 0.3s;
+
+      &:focus {
+        border-color: #000;
+        background: #fff;
+      }
+    }
+  }
+
+  /* --- NEW: SELLER CHECKBOX STYLES --- */
+  .checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px; /* Space before the button */
+    text-align: left;
+    padding-left: 2px; /* Align nicely with other inputs */
+
+    input[type='checkbox'] {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+      accent-color: #000; /* Makes the checkmark black */
+      cursor: pointer;
+      border: 1px solid #ddd;
+    }
+
+    label {
+      font-size: 12px;
+      color: #666;
+      cursor: pointer;
+      user-select: none;
+      margin: 0;
+      font-weight: 500;
+      text-transform: none; /* Keep natural case */
+      letter-spacing: 0.5px;
+    }
+  }
+
+  .login-btn {
+    width: 100%;
+    padding: 18px;
+    background: #000;
+    color: #fff;
+    border: none;
+    font-size: 12px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    margin-top: 10px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .error-msg {
+    color: red;
+    font-size: 12px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+  }
+
+  .footer-text {
+    margin-top: 30px;
+    font-size: 12px;
+    color: #888;
+
+    span {
+      color: #000;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
