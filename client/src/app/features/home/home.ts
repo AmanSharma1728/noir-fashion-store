@@ -1,8 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ProductService } from '../../core/services/product';
-import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
+import {
+  selectFilteredProducts,
+  selectProductsLoading,
+} from '../../store/products/products.selectors';
+import * as ProductsActions from '../../store/products/products.actions';
 
 @Component({
   selector: 'app-home',
@@ -10,19 +15,23 @@ import { Observable } from 'rxjs';
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home implements OnInit {
-  productService = inject(ProductService);
+export class Home {
+  private store = inject(Store);
 
-  products = this.productService.filteredProducts;
+  products$ = this.store.select(selectFilteredProducts);
+  loading$ = this.store.select(selectProductsLoading);
 
-  categories$: Observable<string[]> = this.productService.getCategories();
+  categories: string[] = ['jackets', 'tops', 'bottoms', 'accessories', 'shoes'];
 
   filterCategory(category: string) {
-    if (category === 'All') this.productService.getProducts().subscribe();
-    else this.productService.getProductsByCategory(category).subscribe();
+    if (category === 'All') {
+      this.store.dispatch(ProductsActions.loadProducts());
+    } else {
+      this.store.dispatch(ProductsActions.getProductsByCategory({ category }));
+    }
   }
 
-  ngOnInit() {
-    this.productService.loadProducts();
+  constructor() {
+    this.store.dispatch(ProductsActions.loadProducts());
   }
 }

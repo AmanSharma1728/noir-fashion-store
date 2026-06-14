@@ -6,30 +6,29 @@
 <div class="category-bar">
   <button (click)="filterCategory('All')" class="cat-btn">All</button>
 
-  @if (categories$ | async; as categories) { @for (cat of categories; track cat) {
-  <button (click)="filterCategory(cat)" class="cat-btn">
-    {{ cat | titlecase }}
-  </button>
-  } }
+  @for (cat of categories; track cat) {
+    <button (click)="filterCategory(cat)" class="cat-btn">
+      {{ cat | titlecase }}
+    </button>
+  }
 </div>
 
 <div class="product-grid">
-  @for (product of products(); track product.id) {
+  @for (product of (products$ | async) ?? []; track product.id) {
+    <div class="product-card" [routerLink]="['/products', product.id]">
+      <div class="image-container">
+        <img [src]="product.image" [alt]="product.title" />
+      </div>
 
-  <div class="product-card" [routerLink]="['/products', product.id]">
-    <div class="image-container">
-      <img [src]="product.image" [alt]="product.title" />
+      <div class="info">
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price | currency }}</p>
+      </div>
     </div>
-
-    <div class="info">
-      <h3>{{ product.title }}</h3>
-      <p>{{ product.price | currency }}</p>
+  }
+  @if (((products$ | async) ?? []).length === 0) {
+    <div class="no-results">
+      <p>No items match your search.</p>
     </div>
-  </div>
-
-  } @if(products().length===0){
-  <div class="no-results">
-    <p>No items match your search.</p>
-  </div>
   }
 </div>

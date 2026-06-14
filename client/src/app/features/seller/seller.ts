@@ -1,8 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ProductService } from '../../core/services/product';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import * as ProductsActions from '../../store/products/products.actions';
+import { Product } from '../../core/models/product.model';
+
+import {
+  selectProductsLoading,
+  selectProductsError,
+} from '../../store/products/products.selectors';
 
 @Component({
   selector: 'app-seller',
@@ -11,9 +18,11 @@ import { Router } from '@angular/router';
   styleUrl: './seller.scss',
 })
 export class Seller {
-  fb = inject(FormBuilder);
-  productService = inject(ProductService);
-  router = inject(Router);
+  private fb = inject(FormBuilder);
+  private store = inject(Store);
+
+  loading$ = this.store.select(selectProductsLoading);
+  error$ = this.store.select(selectProductsError);
 
   productForm = this.fb.group({
     title: ['', Validators.required],
@@ -25,14 +34,7 @@ export class Seller {
 
   onSubmit() {
     if (this.productForm.invalid) return;
-    this.productService.addProduct(this.productForm.value).subscribe({
-      next: () => {
-        alert('Product added successfully.');
-        this.router.navigate(['/']);
-      },
-      error: (err) => {
-        alert('Error adding product');
-      },
-    });
+    this.store.dispatch(ProductsActions.addProduct({ productData: this.productForm.value as Partial<Product> }));
+    // Navigation and success alert are handled by addProductSuccess$ in products.effects.ts
   }
 }

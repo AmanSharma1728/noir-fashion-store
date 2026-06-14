@@ -1,33 +1,34 @@
-import { Component, inject } from '@angular/core';
-import { Cart } from '../../core/services/cart';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import * as CartActions from '../../store/cart/cart.actions';
+import { selectCartTotal } from '../../store/cart/cart.selectors';
 
 @Component({
   selector: 'app-checkout',
-  imports: [FormsModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './checkout.html',
   styleUrl: './checkout.scss',
 })
 export class Checkout {
-  cartService = inject(Cart);
+  private store = inject(Store);
   router = inject(Router);
+
+  cartTotal$: Observable<number> = this.store.select(selectCartTotal);
 
   name = '';
   address = '';
   cardNumber = '';
 
   onPay() {
-    //display the alert that the payment is being processed
     alert('processing payment...');
     setTimeout(() => {
-      //clear the cart
-      this.cartService.clearCart();
-
-      //display the alert that order has been placed successfully
+      this.store.dispatch(CartActions.clearCart());
       alert('order placed successfully');
-
-      //redirect to home page
       this.router.navigate(['/']);
     }, 1500);
   }

@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Auth } from '../../core/services/auth';
-import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+
+import * as AuthActions from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -10,9 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './login.scss',
 })
 export class Login {
-  authService = inject(Auth);
-
-  router = inject(Router);
+  private store = inject(Store);
 
   email = '';
   password = '';
@@ -20,13 +19,11 @@ export class Login {
   isSeller = false;
 
   onSubmit() {
-    //console.log('login button was clicked');
-
     if (!this.email || !this.password) {
       this.error = 'Please fill in all fields.';
       return;
     }
 
-    this.authService.login(this.email, this.isSeller);
+    this.store.dispatch(AuthActions.login({ email: this.email, isSeller: this.isSeller }));
   }
 }

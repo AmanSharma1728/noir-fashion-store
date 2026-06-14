@@ -2,7 +2,7 @@
   <h1>CHECKOUT</h1>
 
   <div class="summary">
-    <h3>TOTAL TO PAY: ${{ cartService.totalPrice() }}</h3>
+    <h3>TOTAL TO PAY: ${{ cartTotal$ | async }}</h3>
   </div>
 
   <form (ngSubmit)="onPay()">

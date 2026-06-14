@@ -7,9 +7,12 @@
     "server"
   ],
   "scripts": {
-  "install-all": "npm install && cd server && npm install && cd ../client && npm install",
-  "start-backend": "cd server && npm start",
-  "start-frontend": "cd client && npm start",
-  "dev": "npx concurrently \"npm run start-backend\" \"npm run start-frontend\""
-}
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "start-backend": "cd server && npm start",
+    "start-frontend": "cd client && npm start",
+    "dev": "npx concurrently \"npm run start-backend\" \"npm run start-frontend\""
+  },
+  "dependencies": {
+    "@ngrx/store": "^21.1.1"
+  }
 }
